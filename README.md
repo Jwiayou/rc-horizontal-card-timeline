@@ -51,13 +51,6 @@ const Card = Props => <div className="card">
   <div>{Props.content}</div>
 </div>;
 
-const formatFake = fake.map(item => {
-  return {
-    time: item.time,
-    type: ['error', 'warn', 'success'][item.type],
-    el: <Card content={item.des} title={item.appName}/>
-  }
-});
 
 export default class App extends Component {
   render () {
