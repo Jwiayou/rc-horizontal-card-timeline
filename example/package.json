@@ -1,0 +1,21 @@
+{
+  "name": "rc-horizontal-card-timeline-example",
+  "homepage": "https://Jwiayou.github.io/rc-horizontal-card-timeline",
+  "version": "0.0.0",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "prop-types": "^15.6.2",
+    "rc-horizontal-card-timeline": "file:..",
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-motion": "^0.5.2",
+    "react-scripts": "^1.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
