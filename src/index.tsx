@@ -42,14 +42,28 @@ export default class ExampleComponent extends React.Component<Props> {
     return Math.abs(this.state.lf) >= this.totalMotionLength
   }
 
+  getNewLf = (leftRight: 'right' | 'left'): number => {
+    const {lf} = this.state;
+    const {onceMotionLength, totalMotionLength} = this;
+    const absLf = Math.abs(lf);
+    if (leftRight === 'right') {
+      const hasLength = totalMotionLength - absLf;
+      return  hasLength < onceMotionLength
+        ? lf - hasLength
+        : lf - onceMotionLength
+    } else {
+      return absLf < onceMotionLength
+        ? lf + absLf
+        : lf + onceMotionLength
+    }
+  };
+
   iniTime() {
     this.timer = setInterval(() => {
-      const {rightEnd, onceMotionLength} = this;
+      const {rightEnd} = this
       this.clearMotion = rightEnd;
       this.setState({
-        lf: rightEnd
-          ? 0
-          : this.state.lf - onceMotionLength
+        lf: rightEnd ? 0 : this.getNewLf('right')
       })
     }, this.props.time)
   }
@@ -79,28 +93,12 @@ export default class ExampleComponent extends React.Component<Props> {
   }
 
   handleArrowClick(leftRight: 'left' | 'right'): void {
-    const {lf} = this.state;
-    const {onceMotionLength, totalMotionLength} = this;
-    if ((leftRight === 'left' && lf >= 0) || (leftRight === 'right' && this.rightEnd))
+    if ((leftRight === 'left' && this.state.lf >= 0) || (leftRight === 'right' && this.rightEnd))
       return void 0;
-
-    const getNewLf = (): number => {
-      const absLf = Math.abs(lf);
-      if (leftRight === 'right') {
-        const hasLength = totalMotionLength - absLf;
-        return  hasLength < onceMotionLength
-          ? lf - hasLength
-          : lf - onceMotionLength
-      } else {
-        return absLf < onceMotionLength
-          ? lf + absLf
-          : lf + onceMotionLength
-      }
-    };
 
     this.clearMotion = false;
     this.setState({
-      lf: getNewLf()
+      lf: this.getNewLf(leftRight)
     });
   }
 
