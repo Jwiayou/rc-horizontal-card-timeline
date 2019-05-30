@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import ExampleComponent from 'rc-horizontal-card-timeline'
 import fake from './fake'
 
@@ -16,14 +16,14 @@ const formatFake = fake.map(item => {
 });
 
 export default class App extends Component {
-  render () {
+  render() {
     return (
       <div className="box">
         <ExampleComponent
           cards={[...formatFake, ...formatFake, ...formatFake]}
           autoplay={true}
           scrollLength={1000}
-          time={3000} />
+          time={3000}/>
       </div>
     )
   }
