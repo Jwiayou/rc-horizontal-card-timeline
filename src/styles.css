@@ -1,6 +1,8 @@
 /* add css styles here (optional) */
 
 .crust, .middle {
+  min-height: 300px;
+  min-width: 700px;
   height: 100%;
 }
 
